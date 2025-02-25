@@ -21,9 +21,6 @@ export class Day31FormComponent implements OnInit{
 
   sendSignal(event:any, fruit: string){
     
-    // const change = new  Map<string, string>();
-    // change.set(fruitName, event.target.value);
-    
     console.info('>>> change: ', fruit + 'DELIMITER' + event.target.value)
     this.changeSignal.emit(fruit + 'DELIMITER' + event.target.value);
   }
@@ -42,7 +39,8 @@ export class Day31FormComponent implements OnInit{
     return this.fb.group({
       name : this.fb.control<string>(''),
       address : this.fb.control<string>(''),
-      delivery : this.fb.control<string>('')
+      delivery : this.fb.control<string>(''),
+      items : this.fruitCart,
     })
   }
 
