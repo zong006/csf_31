@@ -1,0 +1,64 @@
+<h2>Order Form</h2>
+<form [formGroup]="orderForm" (submit)="processForm()">
+    
+    <table>
+        <tr>
+            <th>Name</th>
+            <td>
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="radio" id="delivery" formControlName="delivery">
+                <label for="delivery">Delivery</label>
+    
+                <input type="radio" id="self" formControlName="delivery">
+                <label for="self">Self pick-up</label>
+            </td>
+        </tr>
+        <tr>
+            <button type="submit">Submit Order</button>
+        </tr>
+    </table>
+    
+    
+    @if (this.fruitCart.size>0) {
+        <h2>Cart Items</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item No.</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let entry of this.fruitCart | keyvalue ; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{entry.key}}</td>
+                    <td>{{entry.value}}</td>
+                    <td>
+                        <button type="button" value="decrease" (click)="sendSignal($event, entry.key)">-</button>
+                        <button type="button" value="increase" (click)="sendSignal($event, entry.key)">+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Total Cost</th>
+                    <td>{{totalCost}}</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    @else {
+        <h2>Cart is empty</h2>
+    }
+    
+</form>
