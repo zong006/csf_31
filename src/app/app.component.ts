@@ -34,6 +34,7 @@ export class AppComponent implements OnInit{
     }
     console.info('>>> fruits: ', this.fruitCart)
     this.totalCost += newFruit.price;
+    this.totalCost = Number(this.totalCost.toFixed(2))
   }
 
   changeItemQty(change : string){

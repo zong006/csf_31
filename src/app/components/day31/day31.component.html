@@ -24,7 +24,7 @@
                 <img src="{{'fruits/' + f.key + '.png'}}" height="60" width="60">
             </td>
             <td>
-                {{f.value}}
+                {{'$'+ (f.value | number: '1.2-2')}}
             </td>
             <td>
                 <button type="button" (click)="addItem(f.key, f.value)">Add Item</button>

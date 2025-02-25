@@ -27,25 +27,27 @@ export class Day31FormComponent implements OnInit{
 
 
   orderForm !: FormGroup;
+  fb = inject(FormBuilder);
 
   ngOnInit(): void {
     this.orderForm = this.createForm();
-  }  
-
-  fb = inject(FormBuilder);
-
+  } 
 
   createForm():FormGroup{
     return this.fb.group({
       name : this.fb.control<string>(''),
       address : this.fb.control<string>(''),
       delivery : this.fb.control<string>(''),
-      items : this.fruitCart,
+      // items : this.fruitCart,
+      // totalCost : this.totalCost
     })
   }
 
   processForm(){
-    const formValues = this.orderForm.value;
+    
+    var formValues = this.orderForm.value;
+    formValues.items = this.fruitCart
+    formValues.totalCost = this.totalCost
     console.info('>>> form: ', formValues)
     
   }

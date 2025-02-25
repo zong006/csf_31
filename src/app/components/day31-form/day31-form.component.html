@@ -52,7 +52,9 @@
                 </tr>
                 <tr>
                     <th>Total Cost</th>
-                    <td>{{totalCost}}</td>
+                    <td>
+                        {{ totalCost | number: '1.2-2' }}
+                    </td>
                 </tr>
             </tbody>
         </table>
