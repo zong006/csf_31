@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Fruit } from '../../day31models';
-import { Subject } from 'rxjs';
+import { Day31ServiceService } from '../../service/day31-service.service';
 
 @Component({
   selector: 'app-day31',
@@ -8,20 +8,26 @@ import { Subject } from 'rxjs';
   templateUrl: './day31.component.html',
   styleUrl: './day31.component.css'
 })
-export class Day31Component {
-  @Input()
-  fruitList !: Map<string, number> ;
+export class Day31Component implements OnInit{
+  
+  fruitList = new Map<string, number>() ;
 
-  @Output()
-  newFruit = new EventEmitter<Fruit>();
+  constructor(private day31Svc : Day31ServiceService){}
+
+  ngOnInit(): void {
+    this.day31Svc.fruitCatalogue$.subscribe(
+      (data) => {
+        this.fruitList = data;
+        console.info(data)
+      }
+    )
+  }
+  
 
   addItem(name:string, price : number){
     const fruit: Fruit = { name: name, price: price };
-    // event.target.vale
-
-    // console.info('>>> detail: ', fruit)
     
-    this.newFruit.emit(fruit);
+    this.day31Svc.addFruit(fruit);
   }
 
 }

@@ -62,7 +62,10 @@
             </td>
         </tr>
         <tr>
-            <button type="submit" [disabled]="!todoForm.valid">Add Task</button>
+            <button type="submit" [disabled]="!todoForm.valid" mat-icon-button >
+                Add Task
+                <mat-icon>favorite</mat-icon>
+            </button>
         </tr>
     </table>
 </form>
